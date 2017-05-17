@@ -1,118 +1,36 @@
 document.addEventListener('DOMContentLoaded', function () {
-  var last = 0,
-    rand = 0;
-  document.querySelector(".changeQuote").addEventListener("click", function () {
-    while (rand == last) {
-      rand = Math.ceil(Math.random() * 14);
+
+    function setTwitterLink (quote) {
+        var tweetQuote = quote.quote + " -J.K.R.";
+        var tweetHref = 'https://twitter.com/intent/tweet?hashtags=HarryPotter&related=freecodecamp,monik305&text=' + encodeURIComponent(tweetQuote);
+        return tweetHref;
     }
-    last = rand;
-    //console.log("rand", rand)
-    var quote = quotes[rand].quote;
-    var author = quotes[rand].author;
 
-    //console.log("tweet", tweet);
-    //var tweet = document.querySelector(".twitter-share-button").getAttribute('data-text');
-    //tweet = quote;
-    //
-    tweetQuote = quote + " -J.K.R.";
-    tweetHref = 'https://twitter.com/intent/tweet?hashtags=HarryPotter&related=freecodecamp,monik305&text=' + encodeURIComponent(tweetQuote);
-    //console.log("tweetQuote", tweetQuote);
-
-
-    document.querySelector(".twitter-share-button").setAttribute("href", tweetHref);
-
-
-    document.querySelector(".quote").innerHTML = quote;
-    document.querySelector(".author").innerHTML = author;
-  });
-
-
-  var quotes = [
-    {
-      id: 01,
-      quote: '“I am not worried, Harry,” said Dumbledore, his voice a little stronger despite the freezing water. “I am with you.”',
-      author: 'J.K.R., HP and the Half-Blood Prince'
-    },
-    {
-      id: 02,
-      quote: '“You’re a wizard, Harry.”',
-      author: 'J.K.R., HP and the Philosopher’s Stone'
-    },
-    {
-      id: 03,
-      quote: '“But you know, happiness can be found even in the darkest of times, if one only remembers to turn on the light.”',
-      author: 'J.K.R., HP and the Prisoner of Azkaban'
-    },
-    {
-      id: 04,
-      quote: '“Ah, music,” he said, wiping his eyes. “A magic beyond all we do here!”',
-      author: 'J.K.R., HP and the Philosopher’s Stone'
-    },
-    {
-      id: 05,
-      quote: '“Never trust anything that can think for itself if you can’t see where it keeps its brain.”',
-      author: 'J.K.R., HP and the Chamber of Secrets'
-    },
-    {
-      id: 06,
-      quote: '“’I’m not going to be murdered,’ Harry said out loud. ‘That’s the spirit, dear,’ said his mirror sleepily.”',
-      author: 'J.K.R., HP and the Prisoner of Azkaban'
-    },
-    {
-      id: 07,
-      quote: '“You sort of start thinking anything’s possible if you’ve got enough nerve.”',
-      author: 'J.K.R., HP and the Half-Blood Prince'
-    },
-    {
-      id: 08,
-      quote: '“It is our choices, Harry, that show what we truly are, far more than our abilities.”',
-      author: 'J.K.R., HP and the Chamber of Secrets'
-    },
-    {
-      id: 09,
-      quote: '“It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends.”',
-      author: 'J.K.R., HP and the Philosopher’s Stone'
-    },
-    {
-      id: 10,
-      quote: '“Just because you have the emotional range of a teaspoon doesn’t mean we all have.”',
-      author: 'J.K.R., HP and the Order of the Phoenix'
-    },
-    {
-      id: 11,
-      quote: '“Really Hagrid, if you are holding out for universal popularity, I’m afraid you will be in this cabin for a very long time”',
-      author: 'J.K.R., HP and the Goblet of Fire'
-    },
-    {
-      id: 12,
-      quote: '“Chaos reigned.”',
-      author: 'J.K.R., HP and the Deathly Hallows'
-    },
-    {
-      id: 13,
-      quote: '“After all this time?” “Always,” said Snape.',
-      author: 'J.K.R., HP and the Deathly Hallows'
-    },
-    {
-      id: 14,
-      quote: '“Until the very end.”',
-      author: 'J.K.R., HP and the Deathly Hallows'
-    },
-    {
-      id: 15,
-      quote: '“Give her hell from us, Peeves!”',
-      author: 'J.K.R., HP and the Order of the Phoenix'
+    function setQuote(quote) {
+        document.querySelector(".quote").innerHTML = quote.quote;
+        document.querySelector(".author").innerHTML = quote.author;
+        document.querySelector(".twitter-share-button").setAttribute("href", setTwitterLink(quote));
     }
-  ];
+
+    function loadQuote () {
+        getQuote(1, function(data) {
+            //console.log("data", data)
+
+            if (data) {
+                var quote = data[0];
+                setQuote(quote);
+            }
+        })
+    }
+
+    loadQuote(); //First Time
 
 
-  var tweetQuote = quotes[0].quote + " -J.K.R.";
-  var tweetHref = 'https://twitter.com/intent/tweet?hashtags=HarryPotter&related=freecodecamp,monik305&text=' + encodeURIComponent(tweetQuote);
+    document.querySelector(".changeQuote").addEventListener("click", function () {
+        loadQuote()
+     });
 
 
-  document.querySelector(".twitter-share-button").setAttribute("href", tweetHref);
-  document.querySelector(".quote").innerHTML = quotes[0].quote;
-  document.querySelector(".author").innerHTML = quotes[0].author;
 
 
 
