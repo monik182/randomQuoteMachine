@@ -1,0 +1,58 @@
+body {
+  font-size: 16px;
+  background: transparent url("HP.jpg") no-repeat fixed center;
+  height: 100vh;
+  margin-top: 10%;
+}
+
+body,
+button {
+  font-family: 'Megrim', cursive;
+}
+
+button {
+  background-color: #A05339;
+  color: #f5deb3;
+  font-weight: bold;
+}
+
+button:hover {
+  color: #f5deb3 !important;
+  opacity: 0.7;
+}
+
+div.quotes {
+  width: 90%;
+  margin: auto;
+  padding: 2em;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
+  height: 22em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.quotes p {
+  font-weight: bold;
+}
+
+p.quote {
+  font-size: 1.5em;
+}
+
+i.fa-twitter-square {
+  font-size: 2.5em;
+  color: #C1933E;
+}
+
+i.fa-twitter-square:hover {
+  opacity: 0.7;
+}
