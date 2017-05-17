@@ -4,7 +4,7 @@ function getQuote(quantity, callback) {
 
 
     var request = new XMLHttpRequest();
-    request.open('GET', 'data.json', true);
+    request.open('GET', 'https://monik182.github.io/randomQuoteMachine/data.json', true);
 
     request.onload = function() {
         if (request.status >= 200 && request.status < 400) {
